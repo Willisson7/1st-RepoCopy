@@ -1,10 +1,13 @@
+<!-- building out the content heading  by using an assigned value for title and passing it in-->
+
+<% if (title) { %>
+  <h1><%= title %></h1>
+  <% } else {
+    res.redirect('/')
+  } %>
 
 
-  <!-- <div class="details-view">
-    <h1><%-title%></h1>
-    <div class="image>">
-      <img src="<%- inv_image %>" alt="mechanic's">
-    </div>
-  </div> -->
+  
+  <!-- <%# messages() %> -->
 
-
+  <%- grid %>

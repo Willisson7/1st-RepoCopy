@@ -149,3 +149,8 @@ h1 {
   }
 }
 
+/* css for details page */
+
+.vehicle-detail h1 {
+  border: 2px solid red;
+}
