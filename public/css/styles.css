@@ -172,7 +172,7 @@ footer {
 /* css for classification page */
 
 ul #inv-display {
-  margin-left: auto;
+  margin-left: 2%;
 }
 
 #inv-display {
@@ -182,8 +182,6 @@ ul #inv-display {
   justify-content: space-around;
   list-style: none;
   padding: 0;
-
-
   li {
    box-shadow: inset;
     border-radius: 2%;
@@ -196,7 +194,7 @@ ul #inv-display {
   a {
     display: flex;
     justify-content: center;
-    font-size: small;
+    font-size: large;
     color: black;
   }
 
@@ -214,8 +212,11 @@ ul #inv-display {
   hr {
     border: solid 2px black;
   }
-
-  span {
+.namePrice{
+  text-align: center;
+  font-weight: bold;
+}
+  #price {
     text-align: center;
   }
 }
