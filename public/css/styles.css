@@ -1,9 +1,11 @@
 /* ****** Change Box Model **************/
-html{
+html {
   margin-left: 5%;
   margin-right: 5%;
-  margin-top: auto;
+  margin-top: 2%;
+
 }
+
 header {
   display: flex;
   justify-content: space-between;
@@ -42,7 +44,7 @@ nav ul {
   align-self: center;
   font-size: larger;
   width: 100%;
-  
+
 }
 
 nav li {
@@ -52,14 +54,20 @@ nav li {
   width: 100%;
   font-size: larger;
 
+  a {
+    color: crimson;
+  }
+
+
 }
-nav li a{
-  color: crimson
+
+nav li :hover {
+  color: pink
 }
 
 h1 {
   margin-bottom: auto;
-  padding-bottom: 15%;
+  padding-bottom: 5%;
 }
 
 .hero {
@@ -77,8 +85,8 @@ h1 {
   background-color: rgba(239, 246, 248, 0.8);
   width: -moz-fit-content;
   width: fit-content;
- 
-   p {
+
+  p {
     font-weight: bolder;
     font-size: x-large;
     font-family: 'Times New Roman', Times, serif;
@@ -140,17 +148,107 @@ h1 {
     border: solid 5px crimson;
     border-radius: 1%;
     max-height: max-content;
-    padding-bottom: 15%;
+    padding-bottom: 5%;
   }
 
   body {
     background-image: url(/images/site/small_check.jpg);
     background-repeat: center;
+
   }
 }
 
+footer {
+  border: solid 1px crimson;
+  border-bottom-left-radius: 3%;
+  border-bottom-right-radius: 3%;
+  background-color: crimson;
+  text-align: center;
+  width: 100%;
+  margin: 0%;
+
+}
+
+/* css for classification page */
+
+ul #inv-display {
+  margin-left: auto;
+}
+
+#inv-display {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  list-style: none;
+  padding: 0;
+
+
+  li {
+   box-shadow: inset;
+    border-radius: 2%;
+    margin: 2px;
+    width: 30%;
+    background-color: crimson;
+
+  }
+
+  a {
+    display: flex;
+    justify-content: center;
+    font-size: small;
+    color: black;
+  }
+
+  view {
+    align-self: center;
+  }
+
+  img {
+    border-top-left-radius: 2%;
+    border-top-right-radius: 2%;
+    width: 100%;
+    height: auto;
+  }
+
+  hr {
+    border: solid 2px black;
+  }
+
+  span {
+    text-align: center;
+  }
+}
+
+
 /* css for details page */
 
-.vehicle-detail h1 {
-  border: 2px solid red;
+.vehicle-detail {
+  display: flex;
+  flex-direction: column;
+  margin:2%;
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 1;
+}
+
+.heading-column {
+  width: 100%;
+}
+
+.imgColumn img {
+  width: 100%; 
+}
+
+.pColumn {
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+  padding: 0 20px; 
+}
+.bold{
+  font-weight: bold;
 }

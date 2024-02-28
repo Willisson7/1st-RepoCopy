@@ -31,7 +31,7 @@ Util.buildClassificationGrid = async function (data) {
   let grid
   if (data.length > 0) {
     grid = '<ul id="inv-display">'
-  data.forEach(vehicle => {
+    data.forEach(vehicle => {
       grid += '<li>'
       grid += '<a href="../../inv/detail/' + vehicle.inv_id
         + '" title="View ' + vehicle.inv_make + ' ' + vehicle.inv_model
@@ -62,16 +62,30 @@ Util.buildDetailView = async function (vehicle) {
   let grid = '';
   if (vehicle) {
     grid += `
-      <div class="vehicle-detail">
-        <h1>${vehicle.inv_make} ${vehicle.inv_model}</h1>
-        <p>Year: ${vehicle.inv_year}</p>
-        <p>Description: ${vehicle.inv_description}</p>
-        <img src="${vehicle.inv_image}" alt="Car-Image">
-        <img src="${vehicle.inv_thumbnail}" alt="Car Thumbnail">
-        <p>Price: $${vehicle.inv_price}</p>
-        <p>Miles: ${vehicle.inv_miles}</p>
-        <p>Color: ${vehicle.inv_color}</p>
+    <div class="vehicle-detail">
+    <h1>${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}</h1>
+    <div class="row">
+      <div class="heading-column">
       </div>
+    </div>
+    <div class="row">
+      <div class="column">
+        <div class="imgColumn">
+          <img src="${vehicle.inv_image}" alt="Car-Image">
+        </div>
+      </div>
+      <div class="column">
+        <div class="pColumn">
+          <h2>${vehicle.inv_make} ${vehicle.inv_model} Details</h1>
+          <p><span class="bold">Price: $${vehicle.inv_price}</span></p>
+          <p><span class="bold">Description</span>: ${vehicle.inv_description}</p>
+          <p><span class="bold">Color</span>: ${vehicle.inv_color}</p>
+          <p><span class="bold">Miles</span>: ${vehicle.inv_miles}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
     `;
   } else {
     grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>';
