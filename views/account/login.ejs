@@ -1,0 +1,23 @@
+<h1 id="title"><%-title%></h1>
+<div class="form-wrapper">
+<form action="/login" method="post">
+  <div class ="form-border">
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="account_email" required placeholder="Please enter a valid email">
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="account_password" required placeholder="Password required">
+    </div>
+  </div>
+    <div>
+      <button type="submit">Login</button>
+      <p>
+        No Account? <a href="/account/registration">Sign-up</a>
+      </p>
+    </div>
+  </form>
+</div>
+<!-- <script src="/js/script.js"></script> -->
+

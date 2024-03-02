@@ -44,6 +44,7 @@ nav ul {
   align-self: center;
   font-size: larger;
   width: 100%;
+  padding-left: 4%;
 
 }
 
@@ -56,9 +57,11 @@ nav li {
 
   a {
     color: crimson;
+    
+    a:hover{
+      color:pink;
+    }
   }
-
-
 }
 
 nav li :hover {
@@ -66,8 +69,8 @@ nav li :hover {
 }
 
 h1 {
-  margin-bottom: auto;
-  padding-bottom: 5%;
+  /* margin-bottom: auto; */
+  padding-bottom: 2%;
 }
 
 .hero {
@@ -97,6 +100,7 @@ h1 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bold;
     width: fit-content;
+   
   }
 
   img {
@@ -147,7 +151,7 @@ h1 {
     margin: 10%;
     border: solid 5px crimson;
     border-radius: 1%;
-    max-height: max-content;
+    max-height: 100%;
     padding-bottom: 5%;
   }
 
@@ -183,12 +187,10 @@ ul #inv-display {
   list-style: none;
   padding: 0;
   li {
-   box-shadow: inset;
     border-radius: 2%;
     margin: 2px;
     width: 30%;
     background-color: crimson;
-
   }
 
   a {
@@ -252,4 +254,89 @@ ul #inv-display {
 }
 .bold{
   font-weight: bold;
+}
+
+/* login form CSS */
+#title{
+  margin-bottom: 0;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 5% auto; 
+  padding: 20px; 
+  border: 3px solid crimson; 
+  background-color: rgb(22, 28, 28);
+  max-width: 400px; 
+  border-radius: 10px; 
+  p{
+    color: #ccc;
+    a{
+      color:#ccc;
+    }
+  }
+}
+form a:hover{
+  color:pink;
+}
+
+form input[type="email"],
+form input[type="password"] {
+  width: 100%; 
+  padding: 10px; 
+  margin-bottom: 15px; 
+  border-radius: 5px;
+  border: 1px solid #ccc; 
+}
+label{
+  color: #ccc;
+}
+form button[type="submit"] {
+  font-weight: bold;
+  width: 100%; 
+  padding: 10px; 
+  background-color: crimson; 
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  transition: background-color 0.3s; 
+}
+
+form button[type="submit"]:hover {
+  background-color: pink; 
+}
+
+#registration-title{
+  display:flex;
+  justify-content: center;
+}
+
+#reg-form label{
+  color: #ccc;
+  /* margin-top: 0%; */
+  }
+
+ #first-name, #last-name{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid
+  }
+
+  #reg-form button{
+    width:25%; 
+    border-radius: 5%;
+  }
+
+#reg-form span{
+  color:#ccc;
+  padding-bottom: 10px;
+}
+
+.notice {
+  display: flex;
+  justify-content: center;
 }
