@@ -21,6 +21,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
             title: className + " vehicles",
             nav,
             grid,
+            errors: null,
         })
     } catch (error) {
         res.status(404).send("No data found for classification Id");
@@ -40,6 +41,7 @@ invCont.buildDetailView = async function (req, res, next) {
             title: title,
             nav,
             grid,
+            errors: null,
         })
 
     } else {
