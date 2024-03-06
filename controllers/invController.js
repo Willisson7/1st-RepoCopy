@@ -49,4 +49,7 @@ invCont.buildDetailView = async function (req, res, next) {
     }
 }
 
+
+
+
 module.exports = invCont;

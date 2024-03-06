@@ -336,15 +336,10 @@ form button[type="submit"]:hover {
   padding-bottom: 10px;
 }
 
-.notice{
+.Notice{
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   color: red;
 }
 
-/* .registration-container #req1 {
-  display: flex;
-  align-self: center;
- 
-} */

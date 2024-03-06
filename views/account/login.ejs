@@ -1,6 +1,14 @@
 <h1 id="title"><%-title%></h1>
+
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
 <div class="form-wrapper">
-<form action="/login" method="post">
+<form id="loginForm" action="/account/login" method="post">
   <div class ="form-border">
     <div>
       <label for="email">Email:</label>
