@@ -33,10 +33,10 @@ invCont.buildDetailView = async function (req, res, next) {
     const data = await invModel.getInventoryById(inv_id);
     if (data) {
         const grid = await utilities.buildDetailView(data)
-        console.log('Eyes here!!', grid)
+        // console.log('Eyes here!!', grid)
         let nav = await utilities.getNav()
         const title = data.inv_make + " " + data.inv_model
-        console.log('look here', title)
+        // console.log('look here', title)
         res.render("./inventory/detail", {
             title: title,
             nav,

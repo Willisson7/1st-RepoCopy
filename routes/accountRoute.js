@@ -14,6 +14,8 @@ router.get("/login", utils.handleErrors( accController.buildLogin))
 // Deliver  View
 router.get("/register",utils.handleErrors(accController.buildRegister))
 
+
+
 // Get Account Data
 router.post(
     "/register",

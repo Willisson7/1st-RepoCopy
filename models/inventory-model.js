@@ -41,6 +41,6 @@ async function getInventoryById(inv_id) {
   }
 }
 
-
+// async function addClassification()
 
 module.exports = { getClassifications, getInventoryByClassificationId, getInventoryById};

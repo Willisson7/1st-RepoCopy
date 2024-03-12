@@ -1,0 +1,48 @@
+<!-- <% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+ -->
+ <h2>Add New Inventory</h2>
+ <form id="classificationForm" action="/management/add-classification" method="post">
+    <label for="classificationName">Classification Name:</label><br>
+    <input type="text" id="classification_name" name="classification_name" required><br>
+    <span id="classificationError" style="color: red;">The New Classification name cannot contain a space or special character of any kind.</span><br>
+
+    <label for="make">Make:</label><br>
+    <input type="text" id="make" name="inv_make" required><br>
+
+    <label for="model">Model:</label><br>
+    <input type="text" id="model" name="inv_model" required><br>
+
+    <label for="description">Description:</label><br>
+    <textarea id="description" name="inv_description" required></textarea><br>
+
+    <label for="imagePath">Image Path:</label><br>
+    <input type="text" id="image_path" name="inv_image" required><br>
+
+    <label for="thumbnailPath">Thumbnail Path:</label><br>
+    <input type="text" id="thumbnail_path" name="inv_thumbnail" required><br>
+
+    <label for="price">Price:</label><br>
+    <input type="text" id="price" name="inv_price" required><br>
+
+    <label for="year">Year:</label><br>
+    <input type="text" id="year" name="inv_year" required><br>
+
+    <label for="miles">Miles:</label><br>
+    <input type="text" id="miles" name="inv_miles" required><br>
+
+    <label for="color">Color:</label><br>
+    <input type="text" id="color" name="inv_color" required><br>
+
+    <input type="hidden" id="classification_id" name="classification_id" value="1"> <!-- Assuming you have a default value for classification_id -->
+    <button type="submit">Submit</button>
+</form>
+
+ 
+ <script src="../../controllers/managementController.js"></script>
+ 
+ 
