@@ -16,7 +16,7 @@ const utilities = require('./utilities')
 const session = require("express-session")
 const pool = require('./database/')
 const accountRoute = require('./routes/accountRoute')
-const managementRoute = require('./routes/managmentRoute')
+
 const bodyParser = require("body-parser")
 
 
@@ -66,7 +66,8 @@ app.use('/inv', inventoryRoute)
 // Account Route
 app.use('/account', accountRoute)
 
-app.use('/management', managementRoute)
+// app.use('/inv', managementRoute)
+
 // app.get('/', function (req, res) {
 //   res.render('index', { title: 'Home' })
 // File Not Found Route
