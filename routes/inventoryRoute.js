@@ -22,7 +22,10 @@ router.get('/add-classification', utils.handleErrors(invController.buildNewClass
 
 router.get('/add-inventory', utils.handleErrors(invController.buildAddInventoryView));
 
-// Get Account Data
+router.get('/deleteItem', utils.handleErrors(invController.deleteItemView));
+
+
+//GET ACCOUNT DATA
 
 router.post(
     "/add-classification",
@@ -34,6 +37,10 @@ router.post(
     // iValidate.validateInventory(),
     utils.handleErrors(invController.registerNewInventory))
 
+router.post(
+    "/deleteItem",
+    utils.handleErrors(invController.deleteItem)
+)
 
 
 router.get("/error", utils.handleErrors(invController.errorRoute))

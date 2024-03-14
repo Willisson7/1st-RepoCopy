@@ -202,6 +202,9 @@ invCont.registerNewInventory = async function (req, res) {
 
     }
 
+    invCont.deleteItemView = async function(req, res, next){
 
+
+    }
 
     module.exports = invCont

@@ -7,16 +7,17 @@
 <%  }) %>
  </ul>
 <% } %>
+
 <div class="form-wrapper">
 <form id="loginForm" action="/account/login" method="post">
   <div class ="form-border">
     <div>
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="account_email" required placeholder="Please enter a valid email">
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" name="account_email" required value=" <%=locals.account_email%>" placeholder="Please enter a valid email">
     </div>
     <div>
       <label for="password">Password:</label>
-      <input type="password" id="password" name="account_password" required placeholder="Password required">
+      <input type="password" id="password" name="account_password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"placeholder="Password required">
     </div>
   </div>
     <div>

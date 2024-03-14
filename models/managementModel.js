@@ -26,6 +26,7 @@ async function registerNewClass(classification_name) {
   // TO DO : Modify to bring in all relevant data from database. inv_make, model etc.. 
 
   async function registerNewInventory(classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color) {
+    console.log('Eyes Here', classification_id)
     try {
       const queryText = `INSERT INTO public.inventory (classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color)
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`

@@ -16,7 +16,7 @@ const utilities = require('./utilities')
 const session = require("express-session")
 const pool = require('./database/')
 const accountRoute = require('./routes/accountRoute')
-
+const cookieParser = require('cookie-parser')
 const bodyParser = require("body-parser")
 
 
@@ -24,6 +24,7 @@ const bodyParser = require("body-parser")
 /* ***********************
  * Middleware
  * ************************/
+
 app.use(session({
   store: new (require('connect-pg-simple')(session))({
     createTableIfMissing: true,
@@ -35,7 +36,8 @@ app.use(session({
   name: 'sessionId',
 }))
 
-// Express Messages Middleware
+// EXPRESS MESSAGES MIDDLE WARE
+
 app.use(require('connect-flash')())
 app.use(function(req, res, next){
   res.locals.messages = require('express-messages')(req, res)
@@ -46,6 +48,11 @@ app.use(function(req, res, next){
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
+// LOGIN MIDDLEWARE
+
+app.use(cookieParser())
+
+app.use(utilities.checkJWTToken)
 
 /* ***********************
  * View Engine and Templates.
