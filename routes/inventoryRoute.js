@@ -1,7 +1,8 @@
 const express = require('express')
 const router = new express.Router()
-const invController = require('../controllers/invController')
 const utils = require('../utilities')
+const invController = require('../controllers/invController')
+const iValidate = require('../utilities/inventory-validation')
 
 
 router.get("/type/:classification_id", utils.handleErrors(invController.buildByClassificationId));
@@ -25,14 +26,12 @@ router.get('/add-inventory', utils.handleErrors(invController.buildAddInventoryV
 
 router.post(
     "/add-classification",
-    // regValidate.registationRules(),
-    // regValidate.checkRegData,
     utils.handleErrors(invController.registerNewClass))
 
 router.post(
     "/add-inventory",
-    // regValidate.registationRules(),
-    // regValidate.checkRegData,
+    iValidate.inventoryRules(),
+    // iValidate.validateInventory(),
     utils.handleErrors(invController.registerNewInventory))
 
 

@@ -118,26 +118,57 @@ invCont.registerNewClass = async function (req, res) {
     }
 }
 
- // TO DO: Modify this to registerNewInventory
+// TO DO: Modify this to registerNewInventory
 
-    invCont.registerNewInventory = async function (req, res) {
-        console.log('Look Here!')
-        let nav = await utilities.getNav()
-        const {
-            classification_id,
-            inv_make,
-            inv_model,
-            inv_description,
-            inv_image,
-            inv_thumbnail,
-            inv_price,
-            inv_year,
-            inv_miles,
-            inv_color
+invCont.registerNewInventory = async function (req, res) {
+    console.log('Look Here!')
+    let nav = await utilities.getNav()
+    const {
+        classification_id,
+        inv_make,
+        inv_model,
+        inv_description,
+        inv_image,
+        inv_thumbnail,
+        inv_price,
+        inv_year,
+        inv_miles,
+        inv_color
 
-        } = req.body
+    } = req.body
 
+    // BEGINNING SERVER_SIDE VALIDATE
+    let errors = [];
 
+    // VALIDATE ALL REQUIRED FIELDS
+    if (!classification_id || !inv_make || !inv_model || !inv_description || !inv_image || !inv_thumbnail || !inv_price || !inv_year || !inv_miles || !inv_color) {
+        errors.push("All fields are required.");
+
+        // VALIDATE PRICE (DECIMAL OR INTEGER)
+        if (!/^\d+(\.\d+)?$/.test(inv_price)) {
+            errors.push("Price must be a valid decimal or integer.");
+        }
+
+        // VALIDATE YEAR (4-DIGIT NUMBER)
+        if (!/^\d{4}$/.test(inv_year)) {
+            errors.push("Year must be a 4-digit number.");
+        }
+
+        // VALIDATE MILES
+        if (!/^\d+$/.test(inv_miles)) {
+            errors.push("Miles must be a number.");
+        }
+
+        // IF ERRORS, RETURN TO PAGE
+        if (errors.length > 0) {
+            return res.status(400).render("inventory/add-inventory", {
+                title: "Vehicle Management",
+                nav,
+                errors: errors
+            });
+        }
+    }
+        // IF VALIDATION IS SUCCESSFUL, PROCEED WITH REGISTRATION
         const regResult = await managementModel.registerNewInventory(
             classification_id,
             inv_make,
@@ -173,4 +204,4 @@ invCont.registerNewClass = async function (req, res) {
 
 
 
-module.exports = invCont
+    module.exports = invCont

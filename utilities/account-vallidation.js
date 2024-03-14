@@ -76,7 +76,7 @@ validate.checkRegData = async (req, res, next) => {
 /* **********************
  *   Check for existing email
  * ********************* */
- async function checkExistingEmail(account_email){
+ validate.checkExistingEmail = async function(account_email){
    try {
     const sql = "SELECT * FROM account WHERE account_email = $1"
     const email = await pool.query(sql, [account_email])

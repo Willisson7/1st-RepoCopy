@@ -20,7 +20,8 @@ router.get("/register",utils.handleErrors(accController.buildRegister))
 router.post(
     "/register",
     regValidate.registationRules(),
-    regValidate.checkRegData,
+    //  regValidate.checkRegData(),
+    //  regValidate.checkExistingEmail(),
     utils.handleErrors(accController.registerAccount))
 
 
