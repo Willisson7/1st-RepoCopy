@@ -1,4 +1,4 @@
-const utils = require('../utilities')
+const utilities = require('../utilities')
 const accountModel = require('../models/account-model')
 const bcrypt = require('bcryptjs')
 const jwt = require("jsonwebtoken") 
@@ -7,7 +7,7 @@ require("dotenv").config()
 
 // Deliver Login View 
 async function buildLogin(req, res, next) {
-    let nav = await utils.getNav()
+    let nav = await utilities.getNav()
     req.flash("notice", "This is a flash message.")
     res.render('account/login', {
         title: "Login",
@@ -15,9 +15,10 @@ async function buildLogin(req, res, next) {
         errors: null,
     })
 }
+
 // DELIVER REGISTRATION VIEW
 async function buildRegister(req, res, next) {
-    let nav = await utils.getNav()
+    let nav = await utilities.getNav()
  
         req.flash("Notice", 'Sorry, there was an error processing the registration.')
         res.render('account/register', {
@@ -30,7 +31,7 @@ async function buildRegister(req, res, next) {
 // Processing Registration
 
 async function registerAccount(req, res) {
-    let nav = await utils.getNav()
+    let nav = await utilities.getNav()
     const {
         account_firstname,
         account_lastname,
@@ -86,7 +87,7 @@ async function accountLogin(req, res) {
     const accountData = await accountModel.getAccountByEmail(account_email)
     if (!accountData){
         req.flash("Notice", "Please check your credentials and try again.")
-        res.status(400).render("account/login", {
+        res.status(400).render("/account/login", {
             title: "Login",
             nav,
             errors: null,
@@ -106,6 +107,18 @@ async function accountLogin(req, res) {
             return new Error('Access Forbidden')
         }
     }
+// BUILD ACCOUNT-MANAGMENT VIEW
 
+    async function buildManagementView(req, res, next) {
+        let nav = await utilities.getNav()
+     
+            req.flash("Notice", 'Sorry, there was an error processing the registration.')
+            res.render('account/account-management', {
+                title: "Welcome ${account_firstname}" ,
+                nav,
+                errors: null,
+            })
+        }
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin }
+        
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildManagementView }

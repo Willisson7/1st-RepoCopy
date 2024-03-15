@@ -14,6 +14,9 @@ router.get("/login", utils.handleErrors( accController.buildLogin))
 // Deliver  View
 router.get("/register",utils.handleErrors(accController.buildRegister))
 
+// DELIVER ACCOUNT-MANAGEMENT VIEW
+router.get("/account", utils.handleErrors(accController.buildManagementView))
+
 
 
 // Get Account Data
@@ -30,7 +33,12 @@ router.post(
     "/login",
     regValidate.loginRules(),
     regValidate.checkLoginData,
-    utils.handleErrors(accController.accountLogin)
+    utils.handleErrors(accController.buildManagementView)
   )
+
+  // router.post(
+  //   "/account-management",
+  //   utils.handleErrors(acc)
+  // )
 
 module.exports = router;

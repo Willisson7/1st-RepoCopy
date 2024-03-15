@@ -39,4 +39,9 @@ async function registerNewClass(classification_name) {
       throw error; // Rethrow the error for handling in the calling code
     }
   }
+
+
+
+
+  
   module.exports = {registerNewClass, registerNewInventory}
