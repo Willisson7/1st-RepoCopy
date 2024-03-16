@@ -101,7 +101,7 @@ async function accountLogin(req, res) {
             const accessToken = jwt.sign(accountData, process.env.
                 ACCESS_TOKEN_SECRET, {expiresIn: 3600 * 1000 })
                 res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000})
-                return res.redirect("/account")
+                return res.redirect("/")
                 }
         } catch (error){
             return new Error('Access Forbidden')
@@ -109,7 +109,7 @@ async function accountLogin(req, res) {
     }
 // BUILD ACCOUNT-MANAGMENT VIEW
 
-    async function buildManagementView(req, res, next) {
+    async function buildManagementView(req, res,) {
         let nav = await utilities.getNav()
      
             req.flash("Notice", 'Sorry, there was an error processing the registration.')

@@ -15,6 +15,7 @@ router.get("/detail/:inv_id", utils.handleErrors(invController.buildDetailView))
 
 router.get("/inv", utils.handleErrors(invController.buildInventory));
 
+// Route to  Managementview
 
 router.get('/', utils.handleErrors(invController.createManagement));
 
@@ -23,6 +24,8 @@ router.get('/add-classification', utils.handleErrors(invController.buildNewClass
 router.get('/add-inventory', utils.handleErrors(invController.buildAddInventoryView));
 
 router.get('/deleteItem', utils.handleErrors(invController.deleteItemView));
+
+router.get("/getInventory/:classification_id", utils.handleErrors(invController.getInventoryJSON))
 
 
 //GET ACCOUNT DATA
@@ -34,13 +37,13 @@ router.post(
 router.post(
     "/add-inventory",
     iValidate.inventoryRules(),
-    // iValidate.validateInventory(),
+    iValidate.validateInventory,
     utils.handleErrors(invController.registerNewInventory))
 
-router.post(
-    "/deleteItem",
-    utils.handleErrors(invController.deleteItem)
-)
+// router.post(
+//     "/deleteItem",
+//     utils.handleErrors(invController.deleteItem)
+// )
 
 
 router.get("/error", utils.handleErrors(invController.errorRoute))

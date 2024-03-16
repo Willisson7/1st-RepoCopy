@@ -11,20 +11,22 @@ const regValidate = require('../utilities/account-vallidation')
 // Deliver Login View, by getting login path and using 
 router.get("/login", utils.handleErrors( accController.buildLogin))
 
-// Deliver  View
+// Deliver  Register Form
 router.get("/register",utils.handleErrors(accController.buildRegister))
 
 // DELIVER ACCOUNT-MANAGEMENT VIEW
-router.get("/account", utils.handleErrors(accController.buildManagementView))
 
-
+router.get("/account",
+utils.checkLogin,
+utils.handleErrors(accController.buildManagementView))
 
 // Get Account Data
+
 router.post(
     "/register",
     regValidate.registationRules(),
     regValidate.checkRegData,
-    // regValidate.checkExistingEmail,
+    regValidate.checkExistingEmail,
     utils.handleErrors(accController.registerAccount))
 
 
@@ -33,7 +35,7 @@ router.post(
     "/login",
     regValidate.loginRules(),
     regValidate.checkLoginData,
-    utils.handleErrors(accController.buildManagementView)
+    utils.handleErrors(accController.accountLogin)
   )
 
   // router.post(
