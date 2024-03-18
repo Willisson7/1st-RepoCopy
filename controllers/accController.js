@@ -101,13 +101,13 @@ async function accountLogin(req, res) {
             const accessToken = jwt.sign(accountData, process.env.
                 ACCESS_TOKEN_SECRET, {expiresIn: 3600 * 1000 })
                 res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000})
-                return res.redirect("/")
+                return res.redirect("./account-management")
                 }
         } catch (error){
             return new Error('Access Forbidden')
         }
     }
-// BUILD ACCOUNT-MANAGMENT VIEW
+// BUILD ACCOUNT-MANAGEMENT VIEW
 
     async function buildManagementView(req, res,) {
         let nav = await utilities.getNav()
@@ -120,5 +120,5 @@ async function accountLogin(req, res) {
             })
         }
 
-        
+         
 module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildManagementView }
