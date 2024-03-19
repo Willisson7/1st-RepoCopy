@@ -17,7 +17,7 @@ router.get("/register",utils.handleErrors(accController.buildRegister))
 // DELIVER ACCOUNT-MANAGEMENT VIEW
 
 router.get("/account-management/",
-// utils.checkLogin,
+utils.checkLogin,
 utils.handleErrors(accController.buildManagementView))
 
 // Get Account Data

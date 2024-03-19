@@ -1,54 +1,59 @@
-<!-- <% if (title) { %>
-    <h1><%= title %></h1>
-    <% } else {
-      res.redirect('/')
-    } %>
+<% if (title) { %>
+    <h1>
+        <%= title %>
+    </h1>
+<% } else {
+    res.redirect('/');
+} %>
 
- -->
- <h2>Add New Inventory</h2>
- <form id="add-inventoryForm" action="" method="POST">
-     <label for="classification_id">Choose Classification Name
-         <select id="classification_id" name="classification_id" required>
-             <option value="">Select Classification</option>
-             <option value="1">Custom</option>
-             <option value="2">Sport</option>
-             <option value="3">SUV</option>
-             <option value="4">Truck</option>
-             <option value="5">Sedan</option>
-             <option value="18">New Car</option>
-         </select>
-     </label><br> 
- 
-     <label for="make">Make:</label><br>
-     <input type="text" id="make" name="inv_make" placeholder="Min of 3 characters" minlength="3" required><br>
- 
-     <label for="model">Model:</label><br>
-     <input type="text" id="model" name="inv_model" placeholder="Min of 3 characters" minlength="3" required><br>
- 
-     <label for="description">Description:</label><br>
-     <textarea id="description" name="inv_description" required></textarea><br>
- 
-     <label for="imagePath">Image Path:</label><br>
-     <input type="text" id="image_path" name="inv_image" value="images/vehicles/no-image.png" required><br>
- 
-     <label for="thumbnailPath">Thumbnail Path:</label><br>
-     <input type="text" id="thumbnail_path" name="inv_thumbnail" value="/images/vehicles/no-image-tn.png" required><br>
- 
-     <label for="price">Price:</label><br>
-     <input type="text" id="price" name="inv_price" placeholder="Decimal or Integer" pattern="[0-9]+(\.[0-9]+)?" required><br>
- 
-     <label for="year">Year:</label><br>
-     <input type="text" id="year" name="inv_year" placeholder="4-digit year" pattern="[0-9]{4}" required><br>
- 
-     <label for="miles">Miles:</label><br>
-     <input type="text" id="miles" name="inv_miles" placeholder="Digits only" pattern="[0-9]+" required><br>
- 
-     <label for="color">Color:</label><br>
-     <input type="text" id="color" name="inv_color" required><br>
- 
-     <button type="submit">Submit</button>
- </form>
- 
- <script src="../../controllers/invController"></script>
- 
- 
+<%- messages() %>
+
+<% if (errors) { %> 
+<ul class="message warning">
+    <% errors.array().forEach(error => { %>
+    <li><%= error.msg %></li>
+    <% }) %>
+</ul>
+<% } %>
+
+<p>All fields are required</p>
+<form id="add-inventoryForm" action="/inv/add-inventory" method="POST">
+    <fieldset>
+        <label for="classification_id">Choose Classification Name</label>
+    
+        <%- classificationList %>
+        
+        <label for="make">Make:</label><br>
+        <input type="text" id="make" name="inv_make" placeholder="Min of 3 characters" required minlength="3" <% if(locals.inv_make) { %> value="<%= locals.inv_make %>" <% } %>> <br>
+
+        <label for="model">Model:</label><br>
+        <input type="text" id="model" name="inv_model" placeholder="Min of 3 characters" required minlength="3"  <% if(locals.inv_model) { %> value="<%= locals.inv_model %>" <% } %>> <br>
+
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="inv_description" required><% if(locals.inv_description) { %><%= locals.inv_description %><% } %></textarea><br>
+
+        <label for="imagePath">Image Path:</label><br>
+        <input type="text" id="image_path" name="inv_image" value="images/vehicles/no-image.png" required <% if(locals.inv_image) { %> value="<%= locals.inv_image %>" <% } %>><br>
+
+        <label for="thumbnailPath">Thumbnail Path:</label><br>
+        <input type="text" id="thumbnail_path" name="inv_thumbnail" value="/images/vehicles/no-image-tn.png"
+            required <% if(locals.inv_thumbnail) { %> value="<%= locals.inv_thumbnail %>" <% } %>> <br>
+
+        <label for="price">Price:</label><br>
+        <input type="number" id="price" name="inv_price" placeholder="Decimal or Integer" required pattern="[0-9]+(\.[0-9]+)?"
+            <% if(locals.inv_price) { %> value="<%= locals.inv_price %>" <% } %>> <br>
+
+        <label for="year">Year:</label><br>
+        <input type="number" id="year" name="inv_year" placeholder="4-digit year" pattern="^(19|20)\d{2}$" required minlength="4" maxlength="4" <% if(locals.inv_year) { %> value="<%= locals.inv_year %>" <% } %>> <br>
+
+        <label for="miles">Miles:</label><br>
+        <input type="number" id="miles" name="inv_miles" placeholder="Digits only" required pattern="[0-9]+" <% if(locals.inv_miles) { %> value="<%= locals.inv_miles %>" <% } %>> <br>
+
+        <label for="color">Color:</label><br>
+        <input type="text" id="color" name="inv_color" required <% if(locals.inv_color) { %> value="<%= locals.inv_color %>" <% } %>> <br>
+        <br>
+        <button type="submit">Add Vehicle</button>
+    </fieldset>
+</form>
+
+<script src="../../controllers/invController.js"></script>

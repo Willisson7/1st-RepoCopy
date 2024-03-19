@@ -28,8 +28,7 @@ async function buildRegister(req, res, next) {
         })
     }
 
-// Processing Registration
-
+// PROCESSING REGISTRATION
 async function registerAccount(req, res) {
     let nav = await utilities.getNav()
     const {
@@ -108,8 +107,7 @@ async function accountLogin(req, res) {
         }
     }
 // BUILD ACCOUNT-MANAGEMENT VIEW
-
-    async function buildManagementView(req, res,) {
+async function buildManagementView(req, res,) {
         let nav = await utilities.getNav()
      
             req.flash("Notice", 'Sorry, there was an error processing the registration.')
