@@ -8,7 +8,8 @@
                 <fieldset>
                     <label for="classification_id">Choose Classification Name</label>
                     <select id="classification_id" name="classification_id" required>
-                        <option value="<%=locals.classification_id%>" <%=locals.classification==='new car' ? 'selected' : '' %>>New Car
+                        <option value="<%=locals.classification_id%>" <%=locals.classification==='new car' ? 'selected'
+                            : '' %>>New Car
                         </option>
                         <option value="sedan" <%=locals.classification==='sedan' ? 'selected' : '' %>>Sedan</option>
                         <option value="sport" <%=locals.classification==='sport' ? 'selected' : '' %>>Sport</option>

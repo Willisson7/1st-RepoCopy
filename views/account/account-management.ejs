@@ -1,15 +1,16 @@
 <% if (title) { %>
-    <h1 id="-title"><%-title%></h1>
-    <%} else{ res.redirect('/')}%>
-  
-  
-            <div>
-                <p>You are logged in!</p>
-              <div>
-                <a href="/account">Edit Account</a>
-              </div>
-  
-            </div>
+  <h1 id="-title"><%- title %></h1>
+<% } else { %>
+  <% res.redirect('/'); %>
+<% } %>
 
-
- 
+<div>
+  <p>You are logged in!</p>
+  <div>
+      <a href="/account/update-user">Update Account Information</a><br>
+      <% if (locals.account_type !== 'Client') { %>
+        <h2>Inventory Management</h2>
+          <a href="/inv/">Manage Inventory</a>
+      <% } %>
+  </div>
+</div>

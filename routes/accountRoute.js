@@ -3,6 +3,7 @@ const router = new express.Router()
 const utils = require('../utilities')
 const accController = require('../controllers/accController')
 const regValidate = require('../utilities/account-vallidation')
+const { updateAccount } = require('../models/account-model')
 
 
 
@@ -14,14 +15,18 @@ router.get("/login", utils.handleErrors( accController.buildLogin))
 // Deliver  Register Form
 router.get("/register",utils.handleErrors(accController.buildRegister))
 
-// DELIVER ACCOUNT-MANAGEMENT VIEW
+// DELIVER UPDATE INFO VIEW
+router
+.get('/update-user', utils.handleErrors(accController.buildUpdateUser))
+// PROCEES UPDATE INFORMATION
+.post('/update-user', utils.handleErrors(accController.updateAccount))
 
+// DELIVER ACCOUNT-MANAGEMENT VIEW
 router.get("/account-management/",
 utils.checkLogin,
 utils.handleErrors(accController.buildManagementView))
 
 // Get Account Data
-
 router.post(
     "/register",
     regValidate.registationRules(),

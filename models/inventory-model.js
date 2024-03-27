@@ -101,7 +101,7 @@ async function registerNewInventory(
   }
 }
 
-// UPDATE INVENTORY ITEM FUNCTION
+// UPDATE INVENTORY DATA
 async function updateInventory(
   inv_id,
   inv_make,
@@ -137,4 +137,27 @@ async function updateInventory(
   }
 }
 
-module.exports = { getClassifications, getInventoryByClassificationId, getInventoryById, updateInventory, registerNewInventory, registerNewClass };
+// DELETE INVENTORY ITEM
+async function deleteInventoryItem(
+  inv_id,
+  inv_make,
+  inv_model,
+  inv_description,
+  inv_image,
+  inv_thumbnail,
+  inv_price,
+  inv_year,
+  inv_miles,
+  inv_color,
+  classification_id
+) {
+  try {
+    const sql =
+      "DELETE FROM public.inventory WHERE inv_id = $1"
+    const data = await pool.query(sql, [inv_id])
+    return data
+  } catch (error) {
+    new Error("Delete Inventory Error")
+  }
+}
+module.exports = { getClassifications, getInventoryByClassificationId, getInventoryById, updateInventory, registerNewInventory, registerNewClass, deleteInventoryItem };

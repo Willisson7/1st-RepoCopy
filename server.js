@@ -92,7 +92,7 @@ app.use(async (err, req, res, next) => {
   res.render("errors/error", {
     title: err.status || 'Server Error',
     message,
-    nav
+    nav,
   })
 })
 

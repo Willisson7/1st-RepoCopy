@@ -1,0 +1,52 @@
+<% if (title) { %>
+    <h1 id="-title"><%-title%></h1>
+    <%} else{ res.redirect('/')}%>
+    
+    <% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
+  
+  <div class="update-information-container">
+    <!-- Account Information Form -->
+    <form id="update-account-form" action="/account/update-user" method="POST" class="account-form">
+      <input type="hidden" id="account-id" name="account_id" value="<%= locals.account_id %>">   
+      <h2 style="color: whitesmoke">Update Account Information</h2>
+        <div class="form-group">
+            <label for="first-name">First Name:</label>
+            <input type="text" id="first-name" name="account_firstname" required value="<%= locals.account_firstname %>">
+        </div>
+        <div class="form-group">
+            <label for="last-name">Last Name:</label>
+            <input type="text" id="last-name" name="account_lastname" required value="<%= locals.account_lastname %>">
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="account_email" required value="<%= locals.account_email %>">
+        </div>
+        <button type="submit" class="btn btn-primary">Update Account Information</button>
+    </form>
+
+    <!-- Password Change Form -->
+    <form id="change-password-form" action="/account/change-password" method="POST" class="password-form">
+        <input type="hidden" id="account-id" name="account_id" value="<%= locals.account_id %>">
+        <h2 style="color: whitesmoke">Change Password</h2>
+        <div class="form-group">
+            <label for="new-password">New Password:</label>
+            <input type="password" id="new-password" name="new_password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+
+            <span style="color: red">Password must be 12 characters in length and should include at least one of each of the following: lower case letter, upper case letter, numeric character, and one special character.</span>
+        </div>
+        <div class="form-group">
+            <label for="confirm-password">Confirm New Password:</label>
+            <input type="password" id="confirm-password" name="confirm_password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Change Password</button>
+    </form>
+</div>
+
+<%-messages() %>
+

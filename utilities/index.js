@@ -107,23 +107,35 @@ Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)
 
 Util.checkJWTToken = (req, res, next) => {
   if (req.cookies.jwt) {
-    jwt.verify(
-      req.cookies.jwt,
-      process.env.ACCESS_TOKEN_SECRET,
-      function (err, accountData) {
-        if (err) {
-          req.flash("notice", "Please log in")
-          res.clearCookie("jwt")
-          return res.redirect("/account/login")
-        }
-        res.locals.accountData = accountData
-        res.locals.loggedin = 1
-        next()
-      })
+      jwt.verify(
+          req.cookies.jwt,
+          process.env.ACCESS_TOKEN_SECRET,
+          function (err, decodedToken) {
+              if (err) {
+                  req.flash("notice", "Please log in");
+                  res.clearCookie("jwt");
+                  return res.redirect("/account/login");
+              }
+              // Check if account type is neither 'admin' nor 'employee'
+              if (decodedToken.account_type !== 'Admin' && decodedToken.account_type !== 'Employee') {
+                  // Check if the requested route is an /inv route
+                  if (req.originalUrl === '/inv/') {
+                      req.flash("notice", "Your account does not have access to this page.");
+                      return res.redirect("/account/login");
+                  }
+              }
+              // Grant access to decodedToken data
+              res.locals.accountData = decodedToken;
+              res.locals.loggedin = 1;
+              res.locals.account_firstname = decodedToken.account_firstname;
+              res.locals.account_type = decodedToken.account_type;
+              return next();
+          }
+      );
   } else {
-    next()
+      next();
   }
-}
+};
 
 /* ****************************************
  *  Check Login
@@ -158,4 +170,32 @@ Util.checkLogin = (req, res, next) => {
   classificationList += "</select>"
   return classificationList
 }
+
+// CHECK ACCOUNT TYPE
+function requireEmployeeOrAdmin(req, res, next) {
+  // Get the JWT token from the request headers
+  const token = req.headers.authorization;
+
+  // Check if token is present
+  if (!token) {
+      return res.status(401).send({ message: 'Unauthorized: Missing token' });
+  }
+
+  // Verify the token
+  jwt.verify(token, 'secret', (err, decoded) => {
+      if (err) {
+          return res.status(401).send({ message: 'Unauthorized: Invalid token' });
+      }
+
+      // Check if the decoded token contains account type
+      const accountType = decoded.accountType;
+      if (accountType !== 'Employee' && accountType !== 'Admin') {
+          return res.status(403).send({ message: 'Forbidden: Access denied' });
+      }
+
+      // If account type is Employee or Admin, grant access
+      next();
+  });
+}
+
 module.exports = Util;
