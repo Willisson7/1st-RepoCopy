@@ -3,11 +3,11 @@
 <% } else { %>
   <% res.redirect('/'); %>
 <% } %>
-
+<%- messages() %>
 <div>
   <p>You are logged in!</p>
   <div>
-      <a href="/account/update-user">Update Account Information</a><br>
+      <a href="/account/update-user/<%=locals.account_id%>">Update Account Information</a><br>
       <% if (locals.account_type !== 'Client') { %>
         <h2>Inventory Management</h2>
           <a href="/inv/">Manage Inventory</a>

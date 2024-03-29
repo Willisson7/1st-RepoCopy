@@ -172,30 +172,42 @@ Util.checkLogin = (req, res, next) => {
 }
 
 // CHECK ACCOUNT TYPE
-function requireEmployeeOrAdmin(req, res, next) {
-  // Get the JWT token from the request headers
-  const token = req.headers.authorization;
+// function requireEmployeeOrAdmin(req, res, next) {
+//   // Get the JWT token from the request headers
+//   const token = req.headers.authorization;
 
-  // Check if token is present
-  if (!token) {
-      return res.status(401).send({ message: 'Unauthorized: Missing token' });
-  }
+//   // Check if token is present
+//   if (!token) {
+//       return res.status(401).send({ message: 'Unauthorized: Missing token' });
+//   }
 
-  // Verify the token
-  jwt.verify(token, 'secret', (err, decoded) => {
-      if (err) {
-          return res.status(401).send({ message: 'Unauthorized: Invalid token' });
-      }
+//   // Verify the token
+//   jwt.verify(token, 'secret', (err, decoded) => {
+//       if (err) {
+//           return res.status(401).send({ message: 'Unauthorized: Invalid token' });
+//       }
 
-      // Check if the decoded token contains account type
-      const accountType = decoded.accountType;
-      if (accountType !== 'Employee' && accountType !== 'Admin') {
-          return res.status(403).send({ message: 'Forbidden: Access denied' });
-      }
+//       // Check if the decoded token contains account type
+//       const accountType = decoded.accountType;
+//       if (accountType !== 'Employee' && accountType !== 'Admin') {
+//           return res.status(403).send({ message: 'Forbidden: Access denied' });
+//       }
 
-      // If account type is Employee or Admin, grant access
-      next();
-  });
+//       // If account type is Employee or Admin, grant access
+//       next();
+//   });
+// }
+//  GET ACCOUNT BY EMAIL
+Util.getAccountType = async function(account_email) {
+  let account_info = await invModel.getAccountType(account_email)
+  return account_info
 }
+
+// GET ACCOUNT BY ID
+Util.getAccountById = async function(account_id) {
+  let account_info = await invModel.getAccountByIdSQL(account_id)
+  return account_info
+}
+
 
 module.exports = Util;

@@ -36,26 +36,37 @@ async function getAccountByEmail(account_email) {
   }
 }
 
-async function updateAccountData(account_id, account_firstname, account_lastname, account_email) {
+
+async function updateAccountData
+  (
+    account_firstname,
+    account_lastname,
+    account_email,
+    account_id,)   {
   try {
-    const sql = "UPDATE account SET account_firstname = $1, account_lastname = $2, account_email = $3 WHERE account_id = $4 RETURNING *";
-    return await pool.query(sql, [account_firstname, account_lastname, account_email, account_id]);
+    const sql = "UPDATE public.account SET account_firstname = $1, account_lastname = $2, account_email = $3 WHERE account_id = $4";
+    return await pool.query(sql, [
+      account_firstname,
+      account_lastname,
+      account_email,
+      account_id
+    ])
   } catch (error) {
-    return error.message;
+    return error.message
   }
 }
 
 // CHANGE PASSWORD IN DATABASE
-async function changePassword(account_id, newPassword) {
+async function changePassword(account_id, hashedPassword) {
   try {
-    const sql = "UPDATE public.account SET password = $1 WHERE account_id = $2";
-    await pool.query(sql, [newPassword, account_id]);
-    return true; // Password change successful
+      const sql = "UPDATE public.account SET account_password = $1 WHERE account_id = $2";
+      console.log("SQL Query:", sql); // Log the SQL query
+      return await pool.query(sql, [hashedPassword, account_id]);
   } catch (error) {
-    console.error("Error changing password:", error);
-    return false; // Password change failed
+      return error.message;
   }
 }
+
 
 
 module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, updateAccountData, changePassword }
